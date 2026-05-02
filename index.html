@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Validação de Email</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        input,
+        button {
+            padding: 8px;
+            margin-top: 10px;
+        }
+
+        #mensagem {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Cadastro de Email</h2>
+
+    <form id="formulario">
+        <label for="email">Digite seu email:</label><br>
+        <input type="text" id="email" placeholder="exemplo@dominio.com">
+        <br>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <p id="mensagem"></p>
+
+    <script>
+        const form = document.getElementById("formulario");
+        const emailInput = document.getElementById("email");
+        const mensagem = document.getElementById("mensagem");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const email = emailInput.value;
+            
+            // Regex
+            const padrao = /^[^ ]+@[^ ]+\.[a-z]{2,}$/i;
+
+            if (email === "") {
+                mensagem.textContent = "O campo de e-mail não pode estar vazio.";
+                mensagem.style.color = "red";
+            }
+            else if (!padrao.test(email)) {
+                mensagem.textContent = "Email inválido. Use o formato: usuario@dominio.com";
+                mensagem.style.color = "orange";
+            }
+            else {
+                mensagem.textContent = "Email válido!";
+                mensagem.style.color = "green";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
